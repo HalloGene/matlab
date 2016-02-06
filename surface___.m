@@ -1,21 +1,23 @@
-[x, mu] = meshgrid(-5:0.125:10, 0.125:0.0125:1);
+[x, mu] = meshgrid(-20:0.5:20, 0.125:0.0125:1);
 y1 = zeros(size(x, 1), size(mu, 2));
 y2 = zeros(size(x, 1), size(mu, 2));
-s = 0.5;
+s = 1;
 
 
-for i=2:size(x, 1)
-    for j=1:size(mu, 2)
-    l = x(i,j) - sqrt(-2*(s^2)*log(mu(i,j)));
-    r = x(i,j) + sqrt(-2*(s^2)*log(mu(i,j)));
+x_size = size(x, 1); 
+mu_size = size(mu, 2)
+for i=2:x_size
+    for j=1:mu_size
+    l = x(i,j) - sqrt(-2*((s)^2)*log(mu(i,j)));
+    r = x(i,j) + sqrt(-2*((s)^2)*log(mu(i,j)));
     
     %l_ = x(i-1,j) - sqrt(-2*(s^2)*log(mu(i-1,j)));
     %r_ = x(i-1,j) + sqrt(-2*(s^2)*log(mu(i-1,j)));        
     
     %x_ = 0.125;
     
-    funcL = sin(l); %(sign(l)-sign(l_))/x_;
-    funcR = sin(r);%(sign(r)-sign(r_))/x_;  
+    funcL = sign(l);%sin(0.5 * l); %(sign(l)-sign(l_))/x_;
+    funcR = sign(r);%sin(0.5 * r);%(sign(r)-sign(r_))/x_;  
     
     if (i == 2) 
         prevFuncL = funcL;
